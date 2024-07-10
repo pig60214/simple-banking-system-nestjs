@@ -32,6 +32,14 @@
 $ npm install
 ```
 
+## About Database
+```bash
+# starting MySQL in Docker
+docker-compose up
+
+# stop the Docker container
+docker-compose down
+```
 ## Running the app
 
 ```bash
