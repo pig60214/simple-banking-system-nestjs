@@ -1,5 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { AccountController } from './account.controller';
+import { CreateAccountDto } from './dto/create-account.dto';
 
 describe('AccountController', () => {
   let controller: AccountController;
@@ -12,7 +13,10 @@ describe('AccountController', () => {
     controller = module.get<AccountController>(AccountController);
   });
 
-  it('should be defined', () => {
-    expect(controller).toBeDefined();
+  describe('create()', () => {
+    it('should create an account', () => {
+      const createAccountDto: CreateAccountDto = { name: 'test', balance: 0 };
+      expect(controller.create(createAccountDto)).toBe('Hello test');
+    });
   });
 });
