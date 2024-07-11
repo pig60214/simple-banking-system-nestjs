@@ -1,8 +1,16 @@
-import { Module } from '@nestjs/common';
+import { Module, Scope } from '@nestjs/common';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { LoggingInterceptor } from './interceptors/logging.interceptor';
+import { RequestContextModule } from './services/request-context.module';
 
 @Module({
-  providers: [{ provide: APP_INTERCEPTOR, useClass: LoggingInterceptor }],
+  imports: [RequestContextModule],
+  providers: [
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: LoggingInterceptor,
+      scope: Scope.REQUEST,
+    },
+  ],
 })
 export class CoreModule {}
